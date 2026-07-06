@@ -1,6 +1,6 @@
 /* ============================================================
    ePer7shme Jobs — stili kryesor
-   Paleta: e verdhë brand + navy + ink (nga identiteti ekzistues)
+   Paleta e disiplinuar: e bardhë / e zezë / e verdhë (si ktc.al me jeshilen)
    ============================================================ */
 
 :root {
@@ -8,8 +8,9 @@
   --yellow-soft: #FFD84D;
   --yellow-pale: #FFF3C4;
   --yellow-deep: #E3AF00;
-  --navy: #14335F;
-  --navy-deep: #0C2342;
+  /* Paleta e disiplinuar: e bardhë / e zezë / e verdhë (pa blu) */
+  --navy: #16191F;
+  --navy-deep: #0A0C10;
   --ink: #131A26;
   --gray: #6E7887;
   --mist: #EDF2F7;
@@ -19,6 +20,7 @@
   --shadow-lg: 0 22px 48px -14px rgba(19, 26, 38, .22);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --font: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,12 +28,20 @@
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 body {
-  font-family: var(--font);
+  font-family: var(--font-body);
   color: var(--ink);
   background: var(--white);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Titujt dhe elementet "display" mbeten Poppins */
+h1, h2, h3, h4,
+.btn, .brand-text, .main-nav a, .nav-cta,
+.hero-kicker, .section-kicker,
+.stat-num, .service-num, .marquee span, .skill-badge {
+  font-family: var(--font);
 }
 
 img { max-width: 100%; display: block; }
@@ -106,9 +116,9 @@ button { font-family: inherit; cursor: pointer; }
 
 .btn-pulse { animation: pulse-ring 2.4s ease-out infinite; }
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(20, 51, 95, .45); }
-  70%  { box-shadow: 0 0 0 22px rgba(20, 51, 95, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(20, 51, 95, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(19, 26, 38, .45); }
+  70%  { box-shadow: 0 0 0 22px rgba(19, 26, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(19, 26, 38, 0); }
 }
 
 /* ---------- Header ---------- */
@@ -139,6 +149,17 @@ button { font-family: inherit; cursor: pointer; }
 }
 .brand:hover .brand-seven { transform: rotate(360deg); }
 .brand-dot { font-weight: 600; opacity: .55; margin-left: 3px; }
+.brand-jobs {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: .38em; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  line-height: 1;
+  margin-left: 7px;
+  opacity: .75;
+  align-self: stretch;
+  display: inline-flex; align-items: center;
+}
 
 .main-nav { display: flex; align-items: center; gap: 30px; }
 .main-nav a {
@@ -205,7 +226,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .blob-2 {
   width: 300px; height: 300px; bottom: 6%; left: -110px;
-  background: radial-gradient(circle at 40% 35%, rgba(20,51,95,.16), rgba(20,51,95,.02) 70%);
+  background: radial-gradient(circle at 40% 35%, rgba(19, 26, 38,.16), rgba(19, 26, 38,.02) 70%);
   animation: float 14s ease-in-out infinite reverse;
 }
 .blob-3 {
@@ -283,11 +304,12 @@ button { font-family: inherit; cursor: pointer; }
   100% { transform: scale(1) rotate(0); }
 }
 
-.line-jobs .jobs-word {
+.line-jobs { perspective: 1200px; animation: unclip .01s linear 1.55s forwards; }
+.line-jobs .word {
   color: var(--navy);
   position: relative;
 }
-.line-jobs .jobs-word::after {
+.line-jobs .word::after {
   content: ""; position: absolute; left: 2%; bottom: .08em;
   width: 96%; height: .16em; border-radius: 99px;
   background: var(--white);
@@ -296,6 +318,26 @@ button { font-family: inherit; cursor: pointer; }
   animation: underline-in .7s var(--ease-out) 1s forwards;
 }
 @keyframes underline-in { to { transform: scaleX(1); } }
+@keyframes unclip { to { overflow: visible; } }
+
+/* Rrotullimi Jobs ⇄ .al */
+.flip-words {
+  display: inline-grid;
+  transform-style: preserve-3d;
+  animation: flip-word 7s cubic-bezier(.45, 0, .2, 1) 1.8s infinite;
+}
+.flip-face {
+  grid-area: 1 / 1;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back { transform: rotateX(180deg); }
+@keyframes flip-word {
+  0%, 42%  { transform: rotateX(0); }        /* Jobs */
+  50%, 92% { transform: rotateX(180deg); }   /* .al  */
+  100%     { transform: rotateX(360deg); }   /* kthehet te Jobs */
+}
 
 .hero-sub {
   font-size: clamp(16px, 2.1vw, 21px);
@@ -481,6 +523,31 @@ button { font-family: inherit; cursor: pointer; }
 .facts-text p { color: #4A5568; margin-bottom: 16px; font-size: 16.5px; }
 .facts-text b { color: var(--ink); }
 
+/* Themeluesja — diskrete, poshtë tekstit */
+.founder {
+  display: flex; align-items: center; gap: 18px;
+  margin-top: 30px;
+}
+.founder-photo {
+  position: relative;
+  width: 78px; height: 78px; flex-shrink: 0;
+  border-radius: 50%; overflow: hidden;
+  border: 3px solid var(--yellow);
+  background: var(--ink);
+  box-shadow: 0 10px 26px -10px rgba(19,26,38,.35);
+}
+.founder-photo img { width: 100%; height: 100%; object-fit: cover; }
+.founder-initials {
+  position: absolute; inset: 0;
+  display: none; place-items: center;
+  font-family: var(--font); font-weight: 800; font-size: 24px;
+  color: var(--yellow);
+}
+.founder-photo.no-photo img { display: none; }
+.founder-photo.no-photo .founder-initials { display: grid; }
+.founder figcaption strong { display: block; font-weight: 700; font-size: 16.5px; color: var(--ink); }
+.founder figcaption span { font-size: 13.5px; color: var(--gray); }
+
 .skill { margin-bottom: 30px; }
 .skill:last-child { margin-bottom: 0; }
 .skill-head {
@@ -494,7 +561,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700; font-size: 14px;
   padding: 5px 13px; border-radius: 9px;
   position: relative;
-  box-shadow: 0 6px 16px -6px rgba(20,51,95,.5);
+  box-shadow: 0 6px 16px -6px rgba(19, 26, 38,.5);
 }
 .skill-badge::after {
   content: ""; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
@@ -563,7 +630,12 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 900; line-height: 1.12; letter-spacing: -1px;
   margin-bottom: 22px;
 }
-.cta-title em { font-style: normal; color: var(--navy); }
+.cta-title em {
+  font-style: normal; color: var(--ink);
+  background: var(--white);
+  padding: 0 .18em; border-radius: .18em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
 .cta-text {
   max-width: 720px; margin: 0 auto 36px;
   color: var(--ink); font-size: 16.5px; font-weight: 500;
@@ -809,7 +881,7 @@ button { font-family: inherit; cursor: pointer; }
 .cursor-glow {
   position: fixed; left: -400px; top: -400px; z-index: 1;
   width: 360px; height: 360px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(20,51,95,.10), transparent 62%);
+  background: radial-gradient(circle, rgba(19, 26, 38,.10), transparent 62%);
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: left .25s ease-out, top .25s ease-out;

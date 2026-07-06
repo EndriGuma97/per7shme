@@ -1,0 +1,8 @@
+Vendos foton e themelueses këtu me emrin:
+
+    founder.jpg
+
+(p.sh. C:\...\ePerhershme\static\img\founder.jpg)
+
+Derisa të vendoset fotoja, faqja shfaq automatikisht inicialet "PD"
+në një rreth të verdhë — asgjë nuk duket e prishur pa të.

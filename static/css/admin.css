@@ -3,8 +3,8 @@
 :root {
   --yellow: #F7C51E;
   --yellow-pale: #FFF3C4;
-  --navy: #14335F;
-  --navy-deep: #0C2342;
+  --navy: #16191F;
+  --navy-deep: #0A0C10;
   --ink: #131A26;
   --gray: #6E7887;
   --mist: #EDF2F7;
@@ -70,7 +70,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 24px;
   background:
     radial-gradient(700px 420px at 85% -10%, rgba(247,197,30,.25), transparent 60%),
-    radial-gradient(600px 380px at 0% 110%, rgba(20,51,95,.14), transparent 60%),
+    radial-gradient(600px 380px at 0% 110%, rgba(19, 26, 38,.14), transparent 60%),
     var(--mist);
 }
 .login-card {
@@ -108,7 +108,7 @@ input:focus, textarea:focus {
   outline: none;
   border-color: var(--navy);
   background: var(--white);
-  box-shadow: 0 0 0 4px rgba(20,51,95,.1);
+  box-shadow: 0 0 0 4px rgba(19, 26, 38,.1);
 }
 textarea { resize: vertical; line-height: 1.6; }
 
