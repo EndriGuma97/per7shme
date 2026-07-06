@@ -1,0 +1,15 @@
+{{define "post_cards"}}{{range .Posts}}
+<article class="post-card reveal">
+  <a href="/blog/{{.Slug}}" class="card-cover" tabindex="-1" aria-hidden="true">
+    {{if .Cover}}<img src="{{.Cover}}" alt="" loading="lazy">{{else}}<span class="cover-seven">7</span>{{end}}
+  </a>
+  <div class="card-body">
+    <time datetime="{{.CreatedAt.Format "2006-01-02"}}">{{.CreatedAt.Format "02.01.2006"}}</time>
+    <h3><a href="/blog/{{.Slug}}">{{.Title}}</a></h3>
+    <p>{{.Excerpt}}</p>
+    <a class="card-link" href="/blog/{{.Slug}}">Lexo më shumë <span aria-hidden="true">→</span></a>
+  </div>
+</article>
+{{else}}
+<p class="empty-msg">Asnjë artikull nuk u gjet. 🔍</p>
+{{end}}{{end}}

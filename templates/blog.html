@@ -1,0 +1,36 @@
+{{define "content"}}
+<section class="page-hero">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="hero-seven small">7</span>
+  </div>
+  <div class="container">
+    <p class="hero-kicker"><span class="kicker-dot"></span> KËSHILLA · KARRIERË · REKRUTIM</p>
+    <h1 class="page-title">Blogu ynë</h1>
+    <p class="hero-sub">Artikuj për punëkërkues dhe punëdhënës — shkruar nga ekipi i ePer7shme.</p>
+    <div class="blog-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" name="q" placeholder="Kërko artikuj…" autocomplete="off"
+             hx-get="/blog/partial" hx-trigger="input changed delay:300ms, search"
+             hx-target="#post-grid" hx-swap="innerHTML" hx-vals='{"page": 1}'>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-list">
+  <div class="container">
+    <div class="post-grid" id="post-grid">
+      {{template "post_cards" .}}
+    </div>
+    <div id="load-more-wrap" class="load-more">
+      {{if .HasMore}}
+      <button class="btn btn-navy"
+              hx-get="/blog/partial?page={{.NextPage}}"
+              hx-target="#post-grid" hx-swap="beforeend">
+        <span>Më shumë artikuj ↓</span>
+      </button>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}

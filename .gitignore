@@ -1,0 +1,12 @@
+# Databaza SQLite (krijohet automatikisht në nisje)
+*.db
+*.db-wal
+*.db-shm
+
+# Binarë të kompiluar
+eper7shme.exe
+eper7shme
+
+# OS
+Thumbs.db
+.DS_Store

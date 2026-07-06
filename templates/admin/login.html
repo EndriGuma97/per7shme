@@ -1,0 +1,17 @@
+{{define "acontent"}}
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">eper<b>7</b>shme<span>.al</span></div>
+    <h1>Paneli i Administrimit</h1>
+    <p class="login-sub">Hyni për të menaxhuar postimet e blogut.</p>
+    {{if .Error}}<div class="alert">{{.Error}}</div>{{end}}
+    <form method="POST" action="/admin/login">
+      <label for="username">Përdoruesi</label>
+      <input type="text" id="username" name="username" required autofocus autocomplete="username">
+      <label for="password">Fjalëkalimi</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password">
+      <button type="submit" class="abtn abtn-primary abtn-full">Hyr →</button>
+    </form>
+  </div>
+</div>
+{{end}}

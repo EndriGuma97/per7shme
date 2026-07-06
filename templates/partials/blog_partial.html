@@ -1,0 +1,10 @@
+{{define "blog_partial"}}{{template "post_cards" .}}
+<div id="load-more-wrap" class="load-more" hx-swap-oob="true">
+  {{if .HasMore}}
+  <button class="btn btn-navy"
+          hx-get="/blog/partial?page={{.NextPage}}&q={{.Query | urlquery}}"
+          hx-target="#post-grid" hx-swap="beforeend">
+    <span>Më shumë artikuj ↓</span>
+  </button>
+  {{end}}
+</div>{{end}}

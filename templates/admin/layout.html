@@ -1,0 +1,31 @@
+{{define "layout"}}<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{.Title}}</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23131A26'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='800' text-anchor='middle' fill='%23F7C51E'%3E7%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/admin.css">
+<script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+</head>
+<body class="admin-body">
+<header class="admin-topbar">
+  <a href="/admin" class="admin-brand">eper<b>7</b>shme <span>· Paneli</span></a>
+  <nav class="admin-nav">
+    <a href="/" target="_blank" rel="noopener">Shiko faqen ↗</a>
+    {{if ne .Path "/admin/login"}}
+    <form method="POST" action="/admin/logout">
+      <button type="submit" class="abtn abtn-ghost">Dil</button>
+    </form>
+    {{end}}
+  </nav>
+</header>
+<main class="admin-main">
+{{template "acontent" .}}
+</main>
+</body>
+</html>{{end}}

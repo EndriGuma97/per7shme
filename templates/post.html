@@ -1,0 +1,28 @@
+{{define "content"}}
+<section class="page-hero post-hero">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="hero-seven small">7</span>
+  </div>
+  <div class="container">
+    <a href="/blog" class="back-link">← Kthehu te blogu</a>
+    <h1 class="page-title post-title">{{.Post.Title}}</h1>
+    <p class="post-meta">
+      <time datetime="{{.Post.CreatedAt.Format "2006-01-02"}}">{{.Post.CreatedAt.Format "02.01.2006"}}</time>
+      · ePer7shme Jobs
+    </p>
+  </div>
+</section>
+
+<section class="section post-body">
+  <div class="container container-narrow">
+    <article class="prose reveal in">
+      {{.Content}}
+    </article>
+    <div class="post-footer">
+      <a href="/blog" class="btn btn-outline"><span>← Më shumë artikuj</span></a>
+      <a href="/#posto" class="btn btn-navy"><span>#POSTOSOT</span></a>
+    </div>
+  </div>
+</section>
+{{end}}

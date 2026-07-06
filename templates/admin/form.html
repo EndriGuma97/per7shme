@@ -1,0 +1,40 @@
+{{define "acontent"}}
+<div class="admin-container admin-container-narrow">
+  <div class="admin-head">
+    <div>
+      <h1>{{if .IsEdit}}Ndrysho postimin{{else}}Postim i ri{{end}}</h1>
+      <p class="admin-sub">Përmbajtja mbështet <b>Markdown</b> (## tituj, **bold**, lista…)</p>
+    </div>
+    <a href="/admin" class="abtn">← Kthehu</a>
+  </div>
+
+  {{if .Error}}<div class="alert">{{.Error}}</div>{{end}}
+
+  <form method="POST" action="{{.FormAction}}" class="post-form">
+    <label for="title">Titulli *</label>
+    <input type="text" id="title" name="title" value="{{.FormPost.Title}}" required placeholder="p.sh. Si të përgatitesh për intervistë">
+
+    <label for="slug">Slug <span class="hint">(lëre bosh që të krijohet automatikisht nga titulli)</span></label>
+    <input type="text" id="slug" name="slug" value="{{.FormPost.Slug}}" placeholder="si-te-pergatitesh-per-interviste">
+
+    <label for="excerpt">Përmbledhja <span class="hint">(shfaqet në listën e blogut)</span></label>
+    <textarea id="excerpt" name="excerpt" rows="2" placeholder="Një ose dy fjali që përmbledhin artikullin…">{{.FormPost.Excerpt}}</textarea>
+
+    <label for="content">Përmbajtja (Markdown)</label>
+    <textarea id="content" name="content" rows="16" placeholder="## Nëntitull&#10;&#10;Teksti i artikullit këtu…">{{.FormPost.Content}}</textarea>
+
+    <label for="cover">Foto kryesore <span class="hint">(URL, opsionale)</span></label>
+    <input type="url" id="cover" name="cover" value="{{.FormPost.Cover}}" placeholder="https://…/foto.jpg">
+
+    <label class="check-row">
+      <input type="checkbox" name="published" {{if .FormPost.Published}}checked{{end}}>
+      <span>Publikuar (i dukshëm në faqe)</span>
+    </label>
+
+    <div class="form-actions">
+      <button type="submit" class="abtn abtn-primary">{{if .IsEdit}}Ruaj ndryshimet{{else}}Krijo postimin{{end}}</button>
+      <a href="/admin" class="abtn abtn-ghost">Anulo</a>
+    </div>
+  </form>
+</div>
+{{end}}

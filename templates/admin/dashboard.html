@@ -1,0 +1,49 @@
+{{define "acontent"}}
+<div class="admin-container">
+  <div class="admin-head">
+    <div>
+      <h1>Postimet</h1>
+      <p class="admin-sub">{{len .Posts}} postime gjithsej</p>
+    </div>
+    <a href="/admin/new" class="abtn abtn-primary">+ Postim i ri</a>
+  </div>
+
+  {{if .Posts}}
+  <div class="table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Titulli</th>
+          <th class="hide-sm">Slug</th>
+          <th class="hide-sm">Data</th>
+          <th>Statusi</th>
+          <th class="t-right">Veprime</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Posts}}
+        <tr>
+          <td class="t-title"><a href="/blog/{{.Slug}}" target="_blank" rel="noopener">{{.Title}}</a></td>
+          <td class="hide-sm t-slug">{{.Slug}}</td>
+          <td class="hide-sm">{{.CreatedAt.Format "02.01.2006"}}</td>
+          <td>{{if .Published}}<span class="badge badge-live">Publikuar</span>{{else}}<span class="badge badge-draft">Draft</span>{{end}}</td>
+          <td class="t-right actions">
+            <a href="/admin/posts/{{.ID}}/edit" class="abtn abtn-sm">Ndrysho</a>
+            <button class="abtn abtn-sm abtn-danger"
+                    hx-delete="/admin/posts/{{.ID}}"
+                    hx-confirm="Ta fshij përfundimisht këtë postim?"
+                    hx-target="closest tr" hx-swap="outerHTML swap:250ms">Fshi</button>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="empty-state">
+    <p>Ende asnjë postim. Krijo të parin! ✍️</p>
+    <a href="/admin/new" class="abtn abtn-primary">+ Postim i ri</a>
+  </div>
+  {{end}}
+</div>
+{{end}}
